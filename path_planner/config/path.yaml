@@ -1,0 +1,20 @@
+path:
+  - type: "line"
+    start: [0.0, 0.0, 0.0]
+    end: [30.0, 0.0, 0.0] 
+    velocity: 1.0  # m/s
+    dt: 0.1  # seconds per step
+
+  - type: "arc"
+    start: [30.0, 0.0, 0.0]
+    end: [55, 25, 0.0]
+    center: [30.0, 25.0, 0.0] 
+    direction: "CC"
+    velocity: 1.0  # m/s
+    dt: 0.1  # seconds per step
+
+  - type: "line"
+    start: [55, 25, 0.0]
+    end: [55, 50, 0.0]
+    velocity: 1.0  # m/s
+    dt: 0.1  # seconds per step

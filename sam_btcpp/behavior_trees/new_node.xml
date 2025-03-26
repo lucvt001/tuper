@@ -1,0 +1,49 @@
+<root BTCPP_format="4">
+    <TreeNodesModel>
+        <Action ID="CheckFloatForDuration">
+            <input_port name="min" type="float"/>
+            <input_port name="max" type="float"/>
+            <input_port name="min_success_duration" type="float" default="1.0">Minimum duration to consider the condition successful</input_port>
+            <input_port name="min_failure_duration" type="float" default="1.0">Minimum duration to consider the condition failed</input_port>
+            <input_port name="topic_name" type="std::string" default="__default__placeholder__">Topic name</input_port>
+        </Action>
+        <Action ID="GetFloatFromTopic">
+            <output_port name="data" type="float">Data received from the topic (float)</output_port>
+            <input_port name="topic_name" type="std::string" default="__default__placeholder__">Topic name</input_port>
+        </Action>
+        <Action ID="GetRosTime">
+            <output_port name="time" type="double">Time since start of ros launch (secs)</output_port>
+        </Action>
+        <Action ID="LogToRos">
+            <input_port name="log_level" type="std::string" default="INFO">Log level: DEBUG, INFO, WARN, ERROR, FATAL</input_port>
+            <input_port name="log_msg" type="std::string"/>
+        </Action>
+        <Action ID="PublishFloat">
+            <input_port name="topic_name" type="std::string" default="__default__placeholder__">Topic name</input_port>
+            <input_port name="data" type="float" default="0.0">Value of the float32 message</input_port>
+            <input_port name="duration" type="float" default="1.0">Duration to publish for (secs)</input_port>
+            <input_port name="frequency" type="float" default="10.0">Frequency of the published message (Hz)</input_port>
+        </Action>
+        <Action ID="PublishRPM">
+            <input_port name="rpm" type="int" default="0">Thruster rpm to be published (between 0 and 1000)</input_port>
+            <input_port name="duration" type="float" default="1.0">Duration to publish for (secs)</input_port>
+            <input_port name="frequency" type="float" default="10.0">Frequency of the published message (Hz)</input_port>
+            <input_port name="topic_name" type="std::string" default="__default__placeholder__">Topic name</input_port>
+        </Action>
+        <Action ID="PublishThrustVector">
+            <input_port name="vertical_radians" type="float" default="0.0">Between -0.2 to 0.2 radians</input_port>
+            <input_port name="horizontal_radians" type="float" default="0.0">Between -0.2 to 0.2 radians</input_port>
+            <input_port name="duration" type="float" default="1.0">Duration to publish for (secs)</input_port>
+            <input_port name="frequency" type="float" default="10.0">Frequency of the published message (Hz)</input_port>
+            <input_port name="topic_name" type="std::string" default="__default__placeholder__">Topic name</input_port>
+        </Action>
+        <Control ID="ReactiveParallel">
+            <input_port name="failure_count" type="int" default="1">number of children that need to fail to trigger a FAILURE</input_port>
+            <input_port name="success_count" type="int" default="-1">number of children that need to succeed to trigger a SUCCESS</input_port>
+        </Control>
+        <Action ID="RunPid">
+            <input_port name="setpoint" type="float" default="0.0">The desired setpoint</input_port>
+            <input_port name="action_name" type="std::string" default="">Action server name</input_port>
+        </Action>
+    </TreeNodesModel>
+</root>
