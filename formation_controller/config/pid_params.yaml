@@ -1,0 +1,50 @@
+/**:
+  ros__parameters:
+    dt: 0.5
+    is_axis_inverted: 1   # 1 or -1
+    unwinding_factor: 1.0   # only affect the integral term. The higher the faster unwind. Set to -1 for instant unwind.
+
+# Gentle
+y_pid:
+  ros__parameters:
+    kp: 0.015
+    input_topic: '/follower/offset_position_y'
+    output_topic: '/follower/core/thrust_vector_cmd_horizontal/y'
+
+y_delta_pid:
+  ros__parameters:
+    kp: 0.5
+    kd: 0.5
+    input_topic: '/follower/offset_position_y_delta'
+    output_topic: '/follower/core/thrust_vector_cmd_horizontal/y_delta'
+
+# Aggressive
+y_pid_turn:
+  ros__parameters:
+    kp: 0.04
+    input_topic: '/follower/offset_position_y'
+    output_topic: '/follower/core/thrust_vector_cmd_horizontal/y'
+
+y_delta_pid_turn:
+  ros__parameters:
+    kp: 0.7
+    kd: 0.5
+    input_topic: '/follower/offset_position_y_delta'
+    output_topic: '/follower/core/thrust_vector_cmd_horizontal/y_delta'
+
+y_delta_pid_aggressive:
+  ros__parameters:
+    kp: 1.2
+    kd: 0.55
+    input_topic: '/follower/offset_position_y_delta'
+    output_topic: '/follower/core/thrust_vector_cmd_horizontal/y_delta'
+
+# x_pid
+x_pid:
+  ros__parameters:
+    kp: 0.2
+    ki: 0.005
+    kd: 0.05
+    unwinding_factor: 3.0
+    input_topic: '/follower/offset_position_x'
+    output_topic: '/follower/core/thruster_cmd_float'
