@@ -2,7 +2,6 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32
 from geometry_msgs.msg import Point, Twist
-from sam_msgs.msg import ThrusterAngles
 import numpy as np
 from filterpy.kalman import UnscentedKalmanFilter, MerweScaledSigmaPoints
 from filterpy.common import Q_discrete_white_noise
@@ -22,7 +21,7 @@ class PositionFilter(Node):
 
         # Offsets
         self.leader1_offset = np.array([0., 0.])
-        self.leader2_offset = np.array([0., 10.])
+        self.leader2_offset = np.array([0., -10.])
 
         # Subscribers containing the range of the follower from the leaders
         self.leader1_distance_sub = self.create_subscription(Float32, "/follower/distance_to_leader1", self.leader1_distance_cb, 1)
@@ -49,7 +48,7 @@ class PositionFilter(Node):
     def filter_reset(self):
         points = MerweScaledSigmaPoints(n=4, alpha=1e-2, beta=2., kappa=-1.0)
         self.ukf = UnscentedKalmanFilter(dim_x=4, dim_z=1, dt=self.dt, points=points, fx=self.state_transition_function, hx=None)    
-        self.ukf.x = np.array([-11., 0.0, 3.0, 0.0])
+        self.ukf.x = np.array([-11., 0.0, -3.0, 0.0])
         self.ukf.P = np.diag([9., 4., 9., 4.])
         self.ukf.Q = Q_discrete_white_noise(dim=2, dt=1, var=0.6**2, block_size=2)  # Process noise. Choose dt=1 because dt=0.1 cause the Q matrix to be too small, leading to numerical issues
         self.ukf.R = np.array([0.3**2]) # Measurement noise

@@ -8,6 +8,7 @@
 y_pid:
   ros__parameters:
     kp: 0.015
+    is_axis_inverted: -1
     input_topic: '/follower/offset_position_y'
     output_topic: '/follower/core/thrust_vector_cmd_horizontal/y'
 
@@ -15,6 +16,7 @@ y_delta_pid:
   ros__parameters:
     kp: 0.5
     kd: 0.5
+    is_axis_inverted: -1
     input_topic: '/follower/offset_position_y_delta'
     output_topic: '/follower/core/thrust_vector_cmd_horizontal/y_delta'
 
@@ -22,6 +24,7 @@ y_delta_pid:
 y_pid_turn:
   ros__parameters:
     kp: 0.04
+    is_axis_inverted: -1
     input_topic: '/follower/offset_position_y'
     output_topic: '/follower/core/thrust_vector_cmd_horizontal/y'
 
@@ -29,6 +32,7 @@ y_delta_pid_turn:
   ros__parameters:
     kp: 0.7
     kd: 0.5
+    is_axis_inverted: -1
     input_topic: '/follower/offset_position_y_delta'
     output_topic: '/follower/core/thrust_vector_cmd_horizontal/y_delta'
 
@@ -36,6 +40,7 @@ y_delta_pid_aggressive:
   ros__parameters:
     kp: 1.2
     kd: 0.55
+    is_axis_inverted: -1
     input_topic: '/follower/offset_position_y_delta'
     output_topic: '/follower/core/thrust_vector_cmd_horizontal/y_delta'
 

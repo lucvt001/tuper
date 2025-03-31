@@ -84,7 +84,7 @@ private:
       tf2::Transform leader_modem_to_follower_modem_tf =
         leader_base_to_modem_tf.inverse() * leader_base_to_follower_base_tf * follower_base_to_modem_tf;
 
-      leader_modem_to_follower_modem_tf = ned_transform_ * leader_modem_to_follower_modem_tf;
+      // leader_modem_to_follower_modem_tf = ned_transform_ * leader_modem_to_follower_modem_tf;
 
       Point leader_modem_to_follower_modem_point;
       leader_modem_to_follower_modem_point.x = leader_modem_to_follower_modem_tf.getOrigin().x();
