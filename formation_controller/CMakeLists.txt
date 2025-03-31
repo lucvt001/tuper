@@ -16,6 +16,7 @@ find_package(sam_msgs REQUIRED)
 find_package(tuper_interfaces REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(yaml-cpp REQUIRED)
 
 include_directories(
   include
@@ -66,6 +67,10 @@ ament_target_dependencies(relative_tf_listener ${ros_dependencies})
 add_executable(get_differential_value src/get_differential_value.cpp)
 ament_target_dependencies(get_differential_value ${ros_dependencies})
 
+add_executable(formation_shape_broadcaster src/formation_shape_broadcaster.cpp)
+ament_target_dependencies(formation_shape_broadcaster ${ros_dependencies} yaml-cpp)
+target_link_libraries(formation_shape_broadcaster ${YAML_CPP_LIBRARIES})
+
 install(TARGETS
   ping_synchronizer
   string_stamped_processing
@@ -78,6 +83,7 @@ install(TARGETS
   relative_target_position_publisher
   relative_tf_listener
   get_differential_value
+  formation_shape_broadcaster
   DESTINATION lib/${PROJECT_NAME}
 )
 

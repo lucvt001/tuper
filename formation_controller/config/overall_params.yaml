@@ -1,7 +1,7 @@
 relative_target_position_publisher:
   ros__parameters:
     x: -7.0
-    y: 9.0
+    y: -9.0
     z: 0.0
     follower_position_topic: '/follower/filtered_position'
     follower_offset_position_x_topic: '/follower/offset_position_x'
@@ -9,6 +9,10 @@ relative_target_position_publisher:
     follower_offset_position_z_topic: '/follower/offset_position_z'
     follower_offset_position_topic: '/follower/offset_position'
     og_target_position_topic: '/follower/target_position'
+
+formation_shape_broadcaster:
+  ros__parameters:
+    yaml_file_path: '/home/smarc2user/colcon_ws/src/tuper/formation_controller/config/formation_shape.yaml'
 
 ground_truth_tf2:
   ros__parameters:

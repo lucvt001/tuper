@@ -55,6 +55,13 @@ def generate_launch_description():
             package='formation_controller',
             parameters=[config]
         ),
+
+        Node(
+            name='formation_shape_broadcaster',
+            executable='formation_shape_broadcaster',
+            package='formation_controller',
+            parameters=[config]
+        ),
                
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
