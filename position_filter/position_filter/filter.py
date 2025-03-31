@@ -1,12 +1,13 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32
-from geometry_msgs.msg import Point, Twist
+from geometry_msgs.msg import Point, Twist, TransformStamped
 import numpy as np
 from filterpy.kalman import UnscentedKalmanFilter, MerweScaledSigmaPoints
 from filterpy.common import Q_discrete_white_noise
 from functools import partial
 from collections import deque
+from tf2_ros import TransformBroadcaster
 
 class PositionFilter(Node):
 
@@ -30,6 +31,14 @@ class PositionFilter(Node):
         # Publisher to publish the filtered data of the follower
         self.filtered_position_pub = self.create_publisher(Point, '/follower/filtered_position', 1)
         self.filtered_velocity_pub = self.create_publisher(Twist, '/follower/filtered_velocity', 1)
+
+        # Transform broadcaster for dynamic transform publishing
+        self.tf_broadcaster = TransformBroadcaster(self)
+
+        self.declare_parameter("parent_frame", "supreme_leader")
+        self.declare_parameter("child_frame", "follower/filtered_position")
+        self.parent_frame = self.get_parameter("parent_frame").get_parameter_value().string_value
+        self.child_frame = self.get_parameter("child_frame").get_parameter_value().string_value
 
         # Timer for predict step of the filter
         self.timer = self.create_timer(self.dt, self.filter_predict)
@@ -88,11 +97,7 @@ class PositionFilter(Node):
     def update_and_publish(self, measurement: np.ndarray, offset: np.ndarray):
         self.ukf.hx = partial(self.measurement_function, offset=offset)
         self.ukf.update(z=measurement)
-        # if abs(self.ukf.x[0]) < 0.2:
-        #     self.get_logger().warn(f'UKF diverged: {self.ukf.x.tolist()}. Resetting filter.')
-        #     self.filter_reset()
         self.publish_data()
-        # self.get_logger().info(f'UKF updated state: {self.ukf.x.tolist()}')
 
     def publish_data(self):
         pos_x, vel_x, pos_y, vel_y = self.ukf.x
@@ -109,6 +114,20 @@ class PositionFilter(Node):
         twist.linear.x = vel_x
         twist.linear.y = vel_y
         self.filtered_velocity_pub.publish(twist)
+
+        # Publish dynamic transform
+        transform = TransformStamped()
+        transform.header.stamp = self.get_clock().now().to_msg()
+        transform.header.frame_id = self.parent_frame
+        transform.child_frame_id = self.child_frame
+        transform.transform.translation.x = pos_x
+        transform.transform.translation.y = pos_y
+        transform.transform.translation.z = 0.0  # Assuming z is 0
+        transform.transform.rotation.x = 0.0
+        transform.transform.rotation.y = 0.0
+        transform.transform.rotation.z = 0.0
+        transform.transform.rotation.w = 1.0
+        self.tf_broadcaster.sendTransform(transform)
 
     def wma(self, data: float, prev_data: deque, weights: np.ndarray) -> float:
         prev_data.append(data)
