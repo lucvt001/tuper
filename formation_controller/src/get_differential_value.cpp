@@ -12,14 +12,10 @@ public:
   {
     string input_topic = this->declare_parameter<string>("input_topic", "");
     string output_topic = this->declare_parameter<string>("output_topic", "");
-    string rpm_float_topic = this->declare_parameter<string>("rpm_float_topic", "");
     dt_ = this->declare_parameter<float>("dt", 0.5);
 
     input_sub_ = this->create_subscription<Float32>(
       input_topic, 10, std::bind(&DifferentialValueNode::topic_callback, this, std::placeholders::_1));
-
-    rpm_float_sub_ = this->create_subscription<Float32>(
-      rpm_float_topic, 10, [this](const Float32::SharedPtr msg) { rpm_float_ = msg->data; });
 
     pub_ = this->create_publisher<Float32>(output_topic, 10);
   }
@@ -42,7 +38,6 @@ private:
 
   float prev_value_ = -1.0;
   float dt_;
-  float rpm_float_ = 0.0;
 
   rclcpp::Subscription<Float32>::SharedPtr input_sub_;
   rclcpp::Subscription<Float32>::SharedPtr rpm_float_sub_;

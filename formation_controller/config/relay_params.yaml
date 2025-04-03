@@ -1,0 +1,18 @@
+/**/thrust_cmd_relay:
+  ros__parameters:
+    input_topic: 'core/thruster_cmd_float'
+    output_topic1: 'core/thruster1_cmd'
+    output_topic2: 'core/thruster2_cmd'
+
+/**/thrust_vector_relay:
+  ros__parameters:
+    vertical_angle_topic: 'core/thrust_vector_cmd_vertical'
+    horizontal_angle_topic: 'core/thrust_vector_cmd_horizontal'
+    thruster_angles_topic: 'core/thrust_vector_cmd'
+
+/**/thrust_vector_horizontal_relay:
+  ros__parameters:
+    input_topic1: 'core/thrust_vector_cmd_horizontal/y'
+    input_topic2: 'core/thrust_vector_cmd_horizontal/y_delta'
+    output_topic: 'core/thrust_vector_cmd_horizontal'
+    scaling_factor: 0.1

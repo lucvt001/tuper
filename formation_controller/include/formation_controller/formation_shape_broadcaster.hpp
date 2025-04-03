@@ -8,18 +8,22 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+using TransformStamped = geometry_msgs::msg::TransformStamped;
+
 class FormationShapeBroadcaster : public rclcpp::Node
 {
 public:
-    FormationShapeBroadcaster();
+  FormationShapeBroadcaster();
 
 private:
-    void load_yaml(const std::string &file_path);
-    void publish_transforms();
+  void load_yaml(const string &file_path);
+  void publish_transforms();
 
-    std::vector<geometry_msgs::msg::TransformStamped> transforms_;
-    std::shared_ptr<tf2_ros::StaticTransformBroadcaster> static_broadcaster_;
-    rclcpp::TimerBase::SharedPtr timer_;
+  vector<TransformStamped> transforms_;
+  string leader_frame_;
+  std::shared_ptr<tf2_ros::StaticTransformBroadcaster> static_broadcaster_;
+  rclcpp::TimerBase::SharedPtr timer_;
 };
 
 #endif // FORMATION_SHAPE_BROADCASTER_HPP

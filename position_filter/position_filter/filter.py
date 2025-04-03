@@ -35,10 +35,10 @@ class PositionFilter(Node):
         # Transform broadcaster for dynamic transform publishing
         self.tf_broadcaster = TransformBroadcaster(self)
 
-        self.declare_parameter("parent_frame", "supreme_leader")
-        self.declare_parameter("child_frame", "follower/filtered_position")
-        self.parent_frame = self.get_parameter("parent_frame").get_parameter_value().string_value
-        self.child_frame = self.get_parameter("child_frame").get_parameter_value().string_value
+        self.parent_frame = self.declare_parameter("parent_frame", "supreme_leader")
+        self.child_frame = self.declare_parameter("child_frame", "follower/filtered_position")
+        # self.parent_frame = self.get_parameter("parent_frame").get_parameter_value().string_value
+        # self.child_frame = self.get_parameter("child_frame").get_parameter_value().string_value
 
         # Timer for predict step of the filter
         self.timer = self.create_timer(self.dt, self.filter_predict)
@@ -57,9 +57,9 @@ class PositionFilter(Node):
     def filter_reset(self):
         points = MerweScaledSigmaPoints(n=4, alpha=1e-2, beta=2., kappa=-1.0)
         self.ukf = UnscentedKalmanFilter(dim_x=4, dim_z=1, dt=self.dt, points=points, fx=self.state_transition_function, hx=None)    
-        self.ukf.x = np.array([-11., 0.0, -3.0, 0.0])
-        self.ukf.P = np.diag([9., 4., 9., 4.])
-        self.ukf.Q = Q_discrete_white_noise(dim=2, dt=1, var=0.6**2, block_size=2)  # Process noise. Choose dt=1 because dt=0.1 cause the Q matrix to be too small, leading to numerical issues
+        self.ukf.x = np.array([-10., 0.0, -2.0, 0.0])
+        self.ukf.P = np.diag([9., 9., 9., 9.])
+        self.ukf.Q = Q_discrete_white_noise(dim=2, dt=0.1, var=0.9**2, block_size=2)  # Process noise. Choose dt=1 because dt=0.1 cause the Q matrix to be too small, leading to numerical issues
         self.ukf.R = np.array([0.3**2]) # Measurement noise
 
     def filter_predict(self):
@@ -81,6 +81,10 @@ class PositionFilter(Node):
         self.update_and_publish(np.array([distance_to_leader1]), self.leader1_offset)
         self.prev_update_time = time_now
 
+        # Log diagonal values of P covariance matrix
+        p = self.ukf.P.tolist()
+        self.get_logger().info(f'P covariance matrix: {p[0][0]}, {p[1][1]}, {p[2][2]}, {p[3][3]}')
+
     def leader2_distance_cb(self, msg: Float32):
         time_now = self.get_clock().now()
         time_elapsed = (time_now - self.prev_update_time).nanoseconds / 1e9
@@ -89,6 +93,10 @@ class PositionFilter(Node):
         distance_to_leader2 = msg.data
         self.update_and_publish(np.array([distance_to_leader2]), self.leader2_offset)     
         self.prev_update_time = time_now
+
+        # Log diagonal values of P covariance matrix
+        p = self.ukf.P.tolist()
+        self.get_logger().info(f'P covariance matrix: {p[0][0]}, {p[1][1]}, {p[2][2]}, {p[3][3]}')
 
     def measurement_function(self, x: np.ndarray, offset: np.ndarray):
         pos_x, _, pos_y, _ = x

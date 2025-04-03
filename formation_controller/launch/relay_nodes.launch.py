@@ -7,7 +7,7 @@ def generate_launch_description():
     config = os.path.join(
         get_package_share_directory('formation_controller'),
         'config',
-        'overall_params.yaml'
+        'relay_params.yaml'
     )
 
     return LaunchDescription([

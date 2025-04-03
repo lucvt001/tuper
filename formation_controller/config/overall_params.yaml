@@ -1,69 +1,32 @@
-relative_target_position_publisher:
-  ros__parameters:
-    x: -7.0
-    y: -9.0
-    z: 0.0
-    follower_position_topic: '/follower/filtered_position'
-    follower_offset_position_x_topic: '/follower/offset_position_x'
-    follower_offset_position_y_topic: '/follower/offset_position_y'
-    follower_offset_position_z_topic: '/follower/offset_position_z'
-    follower_offset_position_topic: '/follower/offset_position'
-    og_target_position_topic: '/follower/target_position'
+# All frame names should have NS/ prefix unless they are not specific to an agent
+# All topic names should not have / in front (should be relative to the namespace) unless otherwise specified
 
-formation_shape_broadcaster:
+/**/origin_pub:
   ros__parameters:
-    yaml_file_path: '/home/smarc2user/colcon_ws/src/tuper/formation_controller/config/formation_shape.yaml'
+    origin_gps_input_topic: '/agent0/core/gps'  # should be absolute path
+    heading_topic: '/agent0/core/heading' # should be absolute path
+    origin_gps_output_topic: 'origin_gps'
+    world_frame: 'world'
+    local_frame: 'map'
 
-ground_truth_tf2:
+/**/tf_repub:
   ros__parameters:
-    follower_relative_gt_topic: '/follower/relative_gt'
-    leader1_path_topic: '/leader1/path'
-    leader2_path_topic: '/leader2/path'
-    follower_path_topic: '/follower/path'
-    target_position_path_topic: '/leader1/target_position_path'
+    parent_frame: 'NS/target'
+    child_frame: 'NS/base_link'
+    topic_x: 'offset_position_x'
+    topic_y: 'offset_position_y'
+    topic_z: 'offset_position_z'
 
-ping_synchronizer:
+/**/gps_heading_to_tf:
   ros__parameters:
-    interval_ms: 500
-    leader1_acoustic_topic: '/leader1/acoustic/write'
-    leader2_acoustic_topic: '/leader2/acoustic/write'
+    current_gps_topic: 'core/gps'
+    origin_gps_topic: 'origin_gps'
+    heading_topic: 'core/heading'
+    parent_frame: 'world'
+    child_frame: 'NS/base_link'
 
-string_stamped_processing:
+/**/get_differential_value:
   ros__parameters:
-    follower_acoustic_topic: '/follower/acoustic/read'
-    leader1_distance_topic: '/follower/distance_to_leader1'
-    leader2_distance_topic: '/follower/distance_to_leader2'
-
-fuse_distance_triangulation:
-  ros__parameters:
-    leader1_distance_topic: '/follower/distance_to_leader1'
-    leader2_distance_topic: '/follower/distance_to_leader2'
-    follower_relative_position_triangulation_topic: '/follower/relative_triangulation'
-    follower_depth_topic: '/follower/core/depth300_pressure'
-    leaders_distance: 10.0
-    follower_depth_offset: 0.1
-
-get_differential_value:
-  ros__parameters:
-    input_topic: '/follower/offset_position_y'
-    output_topic: '/follower/offset_position_y_delta'
-    rpm_float_topic: '/follower/core/thruster_cmd_float'
-
-thrust_cmd_relay:
-  ros__parameters:
-    input_topic: '/follower/core/thruster_cmd_float'
-    output_topic1: '/follower/core/thruster1_cmd'
-    output_topic2: '/follower/core/thruster2_cmd'
-
-thrust_vector_relay:
-  ros__parameters:
-    vertical_angle_topic: '/follower/core/thrust_vector_cmd_vertical'
-    horizontal_angle_topic: '/follower/core/thrust_vector_cmd_horizontal'
-    thruster_angles_topic: '/follower/core/thrust_vector_cmd'
-
-thrust_vector_horizontal_relay:
-  ros__parameters:
-    input_topic1: '/follower/core/thrust_vector_cmd_horizontal/y'
-    input_topic2: '/follower/core/thrust_vector_cmd_horizontal/y_delta'
-    output_topic: '/follower/core/thrust_vector_cmd_horizontal'
-    scaling_factor: 0.1
+    input_topic: 'offset_position_y'
+    output_topic: 'offset_position_y_delta'
+    dt: 0.5

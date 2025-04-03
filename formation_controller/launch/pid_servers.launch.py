@@ -47,11 +47,4 @@ def generate_launch_description():
             output='screen',
             parameters=[pid_config]
         ),
-        Node(
-            name='y_delta_pid_aggressive',
-            executable='pid_server',
-            package='formation_controller',
-            output='screen',
-            parameters=[pid_config]
-        ),
     ])
