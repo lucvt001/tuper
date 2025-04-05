@@ -1,6 +1,9 @@
 [submodule "BehaviorTree.CPP"]
 	path = BehaviorTree.CPP
-	url = git@github.com:lucvt001/BehaviorTree.CPP.git
+	url = https://github.com/lucvt001/BehaviorTree.CPP.git
 [submodule "BehaviorTree.ROS2"]
 	path = BehaviorTree.ROS2
-	url = git@github.com:lucvt001/BehaviorTree.ROS2.git
+	url = https://github.com/lucvt001/BehaviorTree.ROS2.git
+[submodule "position_filter"]
+	path = position_filter
+	url = https://github.com/lucvt001/position_filter.git
