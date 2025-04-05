@@ -7,3 +7,9 @@
 [submodule "position_filter"]
 	path = position_filter
 	url = https://github.com/lucvt001/position_filter.git
+[submodule "tuper_btcpp"]
+	path = tuper_btcpp
+	url = https://github.com/lucvt001/tuper_btcpp.git
+[submodule "formation_controller"]
+	path = formation_controller
+	url = https://github.com/lucvt001/formation_controller.git
