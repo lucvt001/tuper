@@ -13,3 +13,6 @@
 [submodule "formation_controller"]
 	path = formation_controller
 	url = https://github.com/lucvt001/formation_controller.git
+[submodule "arduagent"]
+	path = arduagent
+	url = https://github.com/lucvt001/arduagent.git
