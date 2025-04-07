@@ -1,11 +1,11 @@
 /**/thrust_cmd_relay:
   ros__parameters:
-    input_topic: 'core/thruster_cmd_float'
+    input_topic: 'control/throttle'     # to make it compatible with rover
     output_topic1: 'core/thruster1_cmd'
     output_topic2: 'core/thruster2_cmd'
 
 /**/thrust_vector_relay:
   ros__parameters:
     vertical_angle_topic: 'core/thrust_vector_cmd_vertical'
-    horizontal_angle_topic: 'core/thrust_vector_cmd_horizontal'
+    horizontal_angle_topic: 'control/steering'    # to make it compatible with rover
     thruster_angles_topic: 'core/thrust_vector_cmd'
