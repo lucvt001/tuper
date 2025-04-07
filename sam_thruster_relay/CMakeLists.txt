@@ -26,15 +26,11 @@ set(ros_dependencies
 add_executable(thrust_vector_relay src/thrust_vector_relay.cpp)
 ament_target_dependencies(thrust_vector_relay ${ros_dependencies})
 
-add_executable(thrust_vector_horizontal_relay src/thrust_vector_horizontal_relay.cpp)
-ament_target_dependencies(thrust_vector_horizontal_relay ${ros_dependencies})
-
 add_executable(thrust_cmd_relay src/thrust_cmd_relay.cpp)
 ament_target_dependencies(thrust_cmd_relay ${ros_dependencies})
 
 install(TARGETS
   thrust_vector_relay
-  thrust_vector_horizontal_relay
   thrust_cmd_relay
   DESTINATION lib/${PROJECT_NAME}
 )

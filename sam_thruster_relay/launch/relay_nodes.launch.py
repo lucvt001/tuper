@@ -20,15 +20,7 @@ def generate_launch_description():
         parameters=[config]
     )
 
-    thrust_vector_horizontal_relay = Node(
-        name='thrust_vector_horizontal_relay',
-        executable='thrust_vector_horizontal_relay',
-        package='sam_thruster_relay',
-        parameters=[config]
-    )
-
     return LaunchDescription([
         thrust_cmd_relay,
         thrust_vector_relay,
-        thrust_vector_horizontal_relay
     ])
