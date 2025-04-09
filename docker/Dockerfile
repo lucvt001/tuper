@@ -19,6 +19,7 @@ RUN apt-get update && apt-get upgrade -y \
     sudo git \
     ros-humble-foxglove-bridge \
     ros-humble-mqtt-client \
+    nlohmann-json3-dev \
     net-tools iproute2 iputils-ping \
     && pip install --upgrade pip==25.0 \
     && pip install --no-input setuptools==58.2.0 filterpy pymavlink \
