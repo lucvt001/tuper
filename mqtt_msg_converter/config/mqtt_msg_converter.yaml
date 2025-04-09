@@ -1,0 +1,9 @@
+/**/gps_converter:
+  ros__parameters:
+    input_topic: '/agent0/json/gps'
+    output_topic: '/agent0/core/gps'
+
+/**/heading_converter:
+  ros__parameters:
+    input_topic: '/agent0/json/heading'
+    output_topic: '/agent0/core/heading'
