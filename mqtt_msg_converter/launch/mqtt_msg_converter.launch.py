@@ -11,14 +11,14 @@ def generate_launch_description():
         name='gps_converter',
         executable='string_to_navsatfix',
         package='mqtt_msg_converter',
-        parameters=[config]
+        parameters=[config], output='screen'
     )
 
     heading_converter = Node(
         name='heading_converter',
         executable='int32_to_float32',
         package='mqtt_msg_converter',
-        parameters=[config]
+        parameters=[config], output='screen'
     )
 
     return LaunchDescription([
