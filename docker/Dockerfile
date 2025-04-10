@@ -15,9 +15,8 @@ ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y python3-pip \
     apt-utils \
-    vim nano tmux \
+    vim tmux \
     sudo git \
-    ros-humble-foxglove-bridge \
     ros-humble-mqtt-client \
     nlohmann-json3-dev \
     net-tools iproute2 iputils-ping \
