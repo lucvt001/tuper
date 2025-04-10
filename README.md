@@ -47,6 +47,9 @@ Remember to build the workspace (ignore a few packages that are only needed for 
 
 ```bash
 cd ~/colcon_ws
-colcon build --symlink-install --packages-ignore sam_thruster_relay tuper_sim_utils     
+colcon build --executor sequential --symlink-install --packages-ignore sam_thruster_relay tuper_sim_utils     
 ```
 
+> Note: If you are working on a resource-constraint platform like RPI, you may have to increase the swap size to avoid out of memory errors. You can do this by editing the file `/etc/dphys-swapfile` and changing the value of `CONF_SWAPSIZE` to a larger number (e.g. 1000-1500). Reboot to take effect. During the build process, open another terminal and run `htop` to monitor cpu+ram usage. If this still causes freezing, consider running `export MAKEFLAGS="-j 1"` (can be 2, 3, 4) to reduce the number of cores used (at the expense of build speed).
+
+>> Warning: After build, you must reduce the `CONF_SWAPSIZE` back to its original value (e.g. 100-300) and reboot again. This is because swap memory is meant to buy time and is extremely slow.
