@@ -16,3 +16,6 @@
 [submodule "arduagent"]
 	path = arduagent
 	url = https://github.com/lucvt001/arduagent.git
+[submodule "monitoring"]
+	path = monitoring
+	url = https://github.com/lucvt001/monitoring.git
