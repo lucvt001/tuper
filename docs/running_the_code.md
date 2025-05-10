@@ -113,4 +113,45 @@ ros2 launch foxglove_bridge foxglove_bridge_launch.xml
 ros2 launch monitoring live_monitoring.launch.py rosbag:=True
 ```
 
+### One follower, one ghost leader
 
+In the case that you only have one boat ready to go as a follower, you can set up an imaginary leader running in ArduPilot SITL.
+
+First, follow the official [ArduPilot SITL](https://ardupilot.org/dev/docs/building-setup-linux.html#building-setup-linux) instructions to set up the simulation, and install [QGroundControl](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html). It is recommended that you do this locally (Linux or WSL2) and not in container, because there is some traffic connection issue between the sim and QGC. Pay attention to these two commands:
+
+```bash
+./waf configure --board sitl
+./waf rover
+```
+
+Add Brunsviken to the list of default locations:
+```bash
+echo "Brun=59.360074,18.053890,0,190" >> ardupilot/Tools/autotest/locations.txt
+```
+
+Add the following lines to `~/.bashrc`, modifying the `ARDUPILOT_ROOT` if you have to:
+
+```bash
+ARDUPILOT_ROOT="/home/smarc2user/ardupilot"
+export PATH="$PATH:$HOME/.local/bin"
+source $ARDUPILOT_ROOT/Tools/completion/completion.bash
+```
+
+Run the simulator as a leader locally, not in container (you should be able to run this from anywhere if you have set up the `~/.bashrc` correctly):
+
+```bash
+sim_vehicle.py -v Rover --out udp:172.17.0.1:14550 --out udp:localhost:14550 -L Brun
+```
+
+Open QGC and you should see the boat show up. Run the default leader path:
+
+```bash
+ros2 launch arduagent rover_bringup.launch.py ns:=leader1 is_leader:=True
+ros2 launch tuper_btcpp leader_bringup.launch.py ns:=leader1 tree_name:=TestRover
+```
+
+You should be able to see something like this (assuming the BT is still as is). You can modify the trajectory in the [leader.xml](../tuper_btcpp/behavior_trees/leader.xml) under the subtree `TestRover`. The leader will be running in the simulation, and the follower will be running in the container. You can also run the follower in the simulation if you want to test it out.
+
+```bash
+
+![](images/ghost_leader_path.png)
