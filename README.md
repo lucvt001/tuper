@@ -1,55 +1,26 @@
 # Team Underwater Perception for Event Response (TUPER)
 
-This is the repository for the control section of the TUPER project. 
+## Introduction
 
-## Installation
+This repository contains the control and filter code for the TUPER project, which aims to control a fleet of underwater vehicles based on acoustic ranging information provided by two surface vehicles. It is designed to be used with ROS2 and is compatible with the SMARC Unity Simulation, as well as real-life vehicles. The control scheme outputs throttle and steering commands in the general `std_msgs/Float32` format. Hence, it can be repurposed for any vehicle that can accept these commands.
 
-### Prerequisites
-Create a ROS2 workspace if you don't have one already:
+Overview of the repository:
+- `BehaviorTree.CPP` and `BehaviorTree.ROS2`: C++ library for behavior trees, which are used to design the control logic of the vehicles. These are forked from the original repository and modified to suit our needs.
+- `docker`: Dockerfile and scripts for building and running the project in a containerized environment.
+- `formation_controller`: most code related to the formation control of the vehicles. It does not contain behavior trees, but rather utility nodes and action servers needed for the behavior trees to work.
+- `position_filter`: UKF code.
+- `tuper_btcpp`: custom tree nodes and behavior trees. If you need to write new nodes, here is where to add. Most likely you will only need to modify trees with Groot2.
+- `tuper_inferfaces`: custom messages, services and actions for the project.
 
-```bash
-mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws/src
+SAM/Unity specific packages: 
+- `sam_thruster_relay`: relay `std_msgs/Float32` to `smarc_msgs/ThrusterRPM` and `sam_msgs/ThrusterAngles` to be compatible with the Unity simulation.
+- `tuper_sim_utils`: contains `ping_synchronizer` to coordinate the ping frequency of the two leaders, and `string_stamped_processing` to process the acoustic message data in Unity.
 
-git clone --recursive https://github.com/lucvt001/tuper.git
-cd ..
-```
+Real-life specific packages: 
+- `arduagent`: code for controlling Ardupilot-based vehicles (ArduRover, ArduSub, etc..). It also contains MQTT nodes to send and receive data between ArduPilot and MQTT broker.
+- `monitoring`: code to be run on ground station (eg. your own laptop) to monitor the vehicles via data received from MQTT.
 
-### Build docker image
+## Tutorials
 
-You should be at the root of the workspace for things to work properly.
-
-```bash
-docker build -t tuper:latest -f src/tuper/docker/Dockerfile .
-```
-
-### Run docker container
-
-The typical practice is that the container be destroyed when it exits. However, for ease of development, we will keep it running even after we exit it, so that if you have to install some package or something, you don't have to do it every time you start the container.
-
-You should be at the root of the workspace for volumes to mount correctly.
-
-```bash
-# Start the container
-. src/tuper/docker/run_container.sh
-
-# you can Ctrl-D to exit the container
-# Do not close this terminal if you want to use the container!
-```
-
-Upon exiting the container, you can always resume it with the following command:
-
-```bash
-docker exec -it tuper bash
-```
-
-Remember to build the workspace (ignore a few packages that are only needed for simulation):
-
-```bash
-cd ~/colcon_ws
-colcon build --executor sequential --symlink-install --packages-ignore sam_thruster_relay tuper_sim_utils     
-```
-
-> Note: If you are working on a resource-constraint platform like RPI, you may have to increase the swap size to avoid out of memory errors. You can do this by editing the file `/etc/dphys-swapfile` and changing the value of `CONF_SWAPSIZE` to a larger number (e.g. 1000-1500). Reboot to take effect. During the build process, open another terminal and run `htop` to monitor cpu+ram usage. If this still causes freezing, consider running `export MAKEFLAGS="-j 1"` (can be 2, 3, 4) to reduce the number of cores used (at the expense of build speed).
-
->> Warning: After build, you must reduce the `CONF_SWAPSIZE` back to its original value (e.g. 100-300) and reboot again. This is because swap memory is meant to buy time and is extremely slow.
+### - [Tutorial 0: Installation](docs/installation.md)
+### - [Tutorial 1: Running the code](docs/running_the_code.md)
