@@ -1,0 +1,815 @@
+{
+  "configById": {
+    "Plot!322wiev": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/follower/gps/offset_position_x.data",
+          "enabled": true,
+          "color": "#4e98e2",
+          "label": "gt"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/follower/ukf/offset_position_x.data",
+          "enabled": true,
+          "color": "#f5774d",
+          "label": "filter"
+        }
+      ],
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": true,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240,
+      "followingViewWidth": 20,
+      "foxglovePanelTitle": "pos_x",
+      "minYValue": -20,
+      "maxYValue": 10
+    },
+    "Plot!3wi1arf": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/follower/control/throttle.data",
+          "enabled": true,
+          "color": "#4c96f5",
+          "label": "rpm_float"
+        }
+      ],
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": true,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240,
+      "followingViewWidth": 20,
+      "foxglovePanelTitle": "",
+      "minYValue": -1,
+      "maxYValue": 1
+    },
+    "Plot!3uwgvi8": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/follower/gps/offset_position_y.data",
+          "enabled": true,
+          "color": "#4e98e2",
+          "label": "gt"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/follower/ukf/offset_position_y.data",
+          "enabled": true,
+          "color": "#f5774d",
+          "label": "filter"
+        }
+      ],
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": true,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240,
+      "followingViewWidth": 20,
+      "foxglovePanelTitle": "pos_y",
+      "minYValue": -10,
+      "maxYValue": 10
+    },
+    "Plot!407ll5": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/follower/control/steering.data",
+          "enabled": true,
+          "color": "#f5774d",
+          "label": "hor_vec"
+        }
+      ],
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": true,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240,
+      "followingViewWidth": 20,
+      "foxglovePanelTitle": "",
+      "minYValue": -0.1,
+      "maxYValue": 0.1
+    },
+    "RosOut!1hpun5y": {
+      "searchTerms": [],
+      "minLogLevel": 1,
+      "nameFilter": {
+        "foxglove_bridge": {
+          "visible": false
+        },
+        "UnityEndpoint": {
+          "visible": false
+        },
+        "foxglove_bridge_component_manager": {
+          "visible": false
+        }
+      },
+      "topicToRender": "/rosout",
+      "foxglovePanelTitle": "Log"
+    },
+    "3D!2mhzowl": {
+      "cameraState": {
+        "perspective": true,
+        "distance": 28.639455621039577,
+        "phi": 40.462930817445255,
+        "thetaOffset": 40.60362004468107,
+        "targetOffset": [
+          69.36273873183433,
+          -2.3629985320617957,
+          9.14382146799298e-16
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "targetOrientation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "fovy": 45,
+        "near": 0.5,
+        "far": 5000
+      },
+      "followMode": "follow-pose",
+      "followTf": "world",
+      "scene": {
+        "labelScaleFactor": 0.22,
+        "transforms": {
+          "axisScale": 3.004,
+          "labelSize": 1.5
+        }
+      },
+      "transforms": {
+        "frame:utm_33_V": {
+          "visible": false
+        },
+        "frame:utm": {
+          "visible": false
+        },
+        "frame:map_gt": {
+          "visible": false
+        },
+        "frame:follower/odom_gt": {
+          "visible": false
+        },
+        "frame:follower/base_link_gt": {
+          "visible": true
+        },
+        "frame:follower/aft_transceiver_link_gt": {
+          "visible": false
+        },
+        "frame:follower/pressure_link_gt": {
+          "visible": false
+        },
+        "frame:follower/thruster_yaw_link_gt": {
+          "visible": false
+        },
+        "frame:follower/thruster_link_gt": {
+          "visible": false
+        },
+        "frame:follower/back_prop_link_gt": {
+          "visible": false
+        },
+        "frame:follower/front_prop_link_gt": {
+          "visible": false
+        },
+        "frame:leader2/odom_gt": {
+          "visible": false
+        },
+        "frame:leader2/base_link_gt": {
+          "visible": false
+        },
+        "frame:leader2/aft_transceiver_link_gt": {
+          "visible": false
+        },
+        "frame:leader2/thruster_yaw_link_gt": {
+          "visible": false
+        },
+        "frame:leader2/thruster_link_gt": {
+          "visible": false
+        },
+        "frame:leader2/back_prop_link_gt": {
+          "visible": false
+        },
+        "frame:leader2/front_prop_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/odom_gt": {
+          "visible": false
+        },
+        "frame:leader1/base_link_gt": {
+          "visible": true
+        },
+        "frame:leader1/aft_transceiver_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/thruster_yaw_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/thruster_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/back_prop_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/front_prop_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/Target position_gt": {
+          "visible": false
+        },
+        "frame:leader1/target_position_link_gt": {
+          "visible": false
+        },
+        "frame:Supreme_leader": {
+          "visible": false
+        },
+        "frame:supreme_leader": {
+          "visible": false
+        },
+        "frame:agent_0": {
+          "visible": false
+        },
+        "frame:agent_1": {
+          "visible": false
+        },
+        "frame:agent_2": {
+          "visible": false
+        },
+        "frame:agent0": {
+          "visible": false
+        },
+        "frame:agent2/odom_gt": {
+          "visible": false
+        },
+        "frame:agent2/aft_transceiver_link_gt": {
+          "visible": false
+        },
+        "frame:agent2/pressure_link_gt": {
+          "visible": false
+        },
+        "frame:agent2/thruster_yaw_link_gt": {
+          "visible": false
+        },
+        "frame:agent2/thruster_link_gt": {
+          "visible": false
+        },
+        "frame:agent2/back_prop_link_gt": {
+          "visible": false
+        },
+        "frame:agent2/front_prop_link_gt": {
+          "visible": false
+        },
+        "frame:world": {
+          "visible": false
+        },
+        "frame:agent2/base_link": {
+          "visible": true
+        },
+        "frame:agent0/odom_gt": {
+          "visible": false
+        },
+        "frame:agent0/aft_transceiver_link_gt": {
+          "visible": false
+        },
+        "frame:agent0/target_position_link_gt": {
+          "visible": false
+        },
+        "frame:agent0/thruster_yaw_link_gt": {
+          "visible": false
+        },
+        "frame:agent0/thruster_link_gt": {
+          "visible": false
+        },
+        "frame:agent0/back_prop_link_gt": {
+          "visible": false
+        },
+        "frame:agent0/front_prop_link_gt": {
+          "visible": false
+        },
+        "frame:agent0/base_link": {
+          "visible": true
+        },
+        "frame:map": {
+          "visible": false
+        },
+        "frame:agent0/base_link_gt": {
+          "visible": true
+        },
+        "frame:agent2/base_link_gt": {
+          "visible": true
+        },
+        "frame:agent0/target": {
+          "visible": false
+        },
+        "frame:agent1/target": {
+          "visible": true
+        },
+        "frame:agent2/target": {
+          "visible": false
+        },
+        "frame:follower/base_link": {
+          "visible": true
+        },
+        "frame:follower/target": {
+          "visible": true
+        },
+        "frame:agent0/heading_link_gt": {
+          "visible": false
+        },
+        "frame:follower/heading_link_gt": {
+          "visible": false
+        },
+        "frame:agent0/gps_link": {
+          "visible": false
+        },
+        "frame:leader1/base_link": {
+          "visible": false
+        },
+        "frame:follower1/target": {
+          "visible": false
+        },
+        "frame:follower2/target": {
+          "visible": false
+        },
+        "frame:follower3/target": {
+          "visible": false
+        },
+        "frame:follower4/target": {
+          "visible": false
+        },
+        "frame:leader1/target": {
+          "visible": false
+        },
+        "frame:leader2/target": {
+          "visible": false
+        },
+        "frame:leader1/follower_target_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/follower1_target_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/follower2_target_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/follower3_target_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/follower4_target_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/heading_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/leader2_target_link_gt": {
+          "visible": false
+        },
+        "frame:leader2/heading_link_gt": {
+          "visible": false
+        },
+        "frame:follower1/odom_gt": {
+          "visible": false
+        },
+        "frame:follower1/aft_transceiver_link_gt": {
+          "visible": false
+        },
+        "frame:follower1/heading_link_gt": {
+          "visible": false
+        },
+        "frame:follower1/thruster_yaw_link_gt": {
+          "visible": false
+        },
+        "frame:follower1/thruster_link_gt": {
+          "visible": false
+        },
+        "frame:follower1/back_prop_link_gt": {
+          "visible": false
+        },
+        "frame:follower1/front_prop_link_gt": {
+          "visible": false
+        },
+        "frame:follower1/base_link_gt": {
+          "visible": false
+        },
+        "frame:follower4/odom_gt": {
+          "visible": false
+        },
+        "frame:follower4/aft_transceiver_link_gt": {
+          "visible": false
+        },
+        "frame:follower4/heading_link_gt": {
+          "visible": false
+        },
+        "frame:follower4/thruster_yaw_link_gt": {
+          "visible": false
+        },
+        "frame:follower4/thruster_link_gt": {
+          "visible": false
+        },
+        "frame:follower4/back_prop_link_gt": {
+          "visible": false
+        },
+        "frame:follower4/front_prop_link_gt": {
+          "visible": false
+        },
+        "frame:follower2/odom_gt": {
+          "visible": false
+        },
+        "frame:follower2/aft_transceiver_link_gt": {
+          "visible": false
+        },
+        "frame:follower2/heading_link_gt": {
+          "visible": false
+        },
+        "frame:follower2/thruster_yaw_link_gt": {
+          "visible": false
+        },
+        "frame:follower2/thruster_link_gt": {
+          "visible": false
+        },
+        "frame:follower2/back_prop_link_gt": {
+          "visible": false
+        },
+        "frame:follower2/front_prop_link_gt": {
+          "visible": false
+        },
+        "frame:follower2/base_link_gt": {
+          "visible": true
+        },
+        "frame:follower3/odom_gt": {
+          "visible": false
+        },
+        "frame:follower3/aft_transceiver_link_gt": {
+          "visible": false
+        },
+        "frame:follower3/heading_link_gt": {
+          "visible": false
+        },
+        "frame:follower3/thruster_yaw_link_gt": {
+          "visible": false
+        },
+        "frame:follower3/thruster_link_gt": {
+          "visible": false
+        },
+        "frame:follower3/back_prop_link_gt": {
+          "visible": false
+        },
+        "frame:follower3/front_prop_link_gt": {
+          "visible": false
+        },
+        "frame:leader1/base_link_gps": {
+          "visible": false
+        },
+        "frame:usv1/gps_link": {
+          "visible": false
+        }
+      },
+      "topics": {
+        "/leader1/path": {
+          "visible": true,
+          "lineWidth": 0.2,
+          "gradient": [
+            "#7c6bff73",
+            "#8c43faff"
+          ]
+        },
+        "/leader2/path": {
+          "visible": true,
+          "gradient": [
+            "#622fed75",
+            "#7f2ffaff"
+          ]
+        },
+        "/follower/path": {
+          "visible": true,
+          "lineWidth": 0.1,
+          "gradient": [
+            "#2eff5b75",
+            "#00fa1dff"
+          ]
+        },
+        "/leader1/target_position_path": {
+          "visible": true,
+          "gradient": [
+            "#ff00005e",
+            "#ff0000ff"
+          ],
+          "lineWidth": 0.1
+        },
+        "/leader1/target_path": {
+          "visible": true,
+          "gradient": [
+            "#ff00007a",
+            "#f80000ff"
+          ],
+          "lineWidth": 0.1
+        },
+        "/leader2/target_path": {
+          "visible": true,
+          "gradient": [
+            "#ff00007a",
+            "#ff0000ff"
+          ],
+          "lineWidth": 0.1
+        },
+        "/follower/target_path": {
+          "visible": true,
+          "lineWidth": 0.1,
+          "gradient": [
+            "#ff000085",
+            "#ff0000ff"
+          ]
+        },
+        "/agent0/path": {
+          "visible": true,
+          "gradient": [
+            "#7c6bff85",
+            "#7c6bffff"
+          ],
+          "lineWidth": 0.2
+        },
+        "/agent0/target_path": {
+          "visible": true,
+          "lineWidth": 0.1,
+          "gradient": [
+            "#ff886b85",
+            "#ff706bff"
+          ]
+        },
+        "/telem/path": {
+          "visible": true
+        },
+        "/leader/path": {
+          "visible": true,
+          "gradient": [
+            "#7c6bff75",
+            "#7c6bffff"
+          ],
+          "lineWidth": 0.1
+        },
+        "/agent0/agent1_target_path": {
+          "visible": true,
+          "lineWidth": 0.2,
+          "gradient": [
+            "#7c6bff80",
+            "#7c6bffff"
+          ]
+        },
+        "/agent0/follower1_target_path": {
+          "visible": true,
+          "gradient": [
+            "#7c6bff80",
+            "#7c6bffff"
+          ],
+          "lineWidth": 0.2
+        },
+        "/agent0/follower2_target_path": {
+          "visible": true,
+          "lineWidth": 0.2,
+          "gradient": [
+            "#7c6bff85",
+            "#7c6bffff"
+          ]
+        },
+        "/agent0/follower3_target_path": {
+          "visible": true,
+          "lineWidth": 0.2,
+          "gradient": [
+            "#7c6bff85",
+            "#7c6bffff"
+          ]
+        },
+        "/agent1/path": {
+          "visible": true,
+          "gradient": [
+            "#6bff8180",
+            "#6bff7cff"
+          ]
+        },
+        "/follower1/path": {
+          "visible": true,
+          "gradient": [
+            "#6eff6b73",
+            "#6bff6eff"
+          ]
+        },
+        "/follower2/path": {
+          "visible": true,
+          "gradient": [
+            "#6dff6b78",
+            "#6bff77ff"
+          ]
+        },
+        "/follower3/path": {
+          "visible": true,
+          "gradient": [
+            "#6dff6b75",
+            "#6eff6bff"
+          ]
+        },
+        "/leader1/follower_target_path": {
+          "visible": true,
+          "gradient": [
+            "#7c6bffff",
+            "#7c6bff7d"
+          ]
+        },
+        "/follower/gps_path": {
+          "visible": true,
+          "gradient": [
+            "#6dff6b80",
+            "#6bff77ff"
+          ],
+          "lineWidth": 0.1
+        },
+        "/follower/ukf_path": {
+          "visible": true,
+          "gradient": [
+            "#f3ff6b7a",
+            "#ffff6bff"
+          ],
+          "lineWidth": 0.1
+        },
+        "/leader1/leader2_target_path": {
+          "visible": false
+        },
+        "/follower/path/gps_path": {
+          "visible": true,
+          "lineWidth": 0.2,
+          "gradient": [
+            "#89ff6b80",
+            "#6bff78ff"
+          ]
+        },
+        "/follower/path/ukf_path": {
+          "visible": true,
+          "gradient": [
+            "#fffe6b80",
+            "#f5ff6bff"
+          ],
+          "lineWidth": 0.2
+        },
+        "/follower1/path/gps_path": {
+          "visible": true,
+          "gradient": [
+            "#6bff7c7d",
+            "#6eff6bff"
+          ]
+        },
+        "/follower1/path/ukf_path": {
+          "visible": true,
+          "gradient": [
+            "#f6ff6b82",
+            "#ffff6bff"
+          ]
+        },
+        "/leader1/follower1_target_path": {
+          "visible": true
+        },
+        "/follower4/path/gps_path": {
+          "visible": true,
+          "gradient": [
+            "#80ff6b7d",
+            "#81ff6bff"
+          ]
+        },
+        "/follower4/path/ukf_path": {
+          "visible": true,
+          "gradient": [
+            "#faff6b7d",
+            "#f3ff6bff"
+          ]
+        },
+        "/leader1/follower4_target_path": {
+          "visible": true
+        },
+        "/follower2/path/gps_path": {
+          "visible": true,
+          "gradient": [
+            "#76ff6b85",
+            "#6eff6bff"
+          ]
+        },
+        "/follower2/path/ukf_path": {
+          "visible": true,
+          "gradient": [
+            "#fff96b85",
+            "#ffff6bff"
+          ]
+        },
+        "/follower3/path/gps_path": {
+          "visible": true,
+          "gradient": [
+            "#80ff6b82",
+            "#6dff6bff"
+          ]
+        },
+        "/follower3/path/ukf_path": {
+          "visible": true,
+          "gradient": [
+            "#f6ff6b82",
+            "#ffff6bff"
+          ]
+        },
+        "/leader1/follower3_target_path": {
+          "visible": true
+        },
+        "/leader1/follower2_target_path": {
+          "visible": true
+        },
+        "/leader2/path/gps_path": {
+          "visible": true
+        },
+        "/leader1/path/gps_path": {
+          "visible": true
+        }
+      },
+      "layers": {
+        "grid": {
+          "visible": false,
+          "frameLocked": true,
+          "label": "Grid",
+          "instanceId": "b7ddba71-5ad7-404e-8e78-8247e4ea8fb0",
+          "layerId": "foxglove.Grid",
+          "size": 10,
+          "divisions": 10,
+          "lineWidth": 1,
+          "color": "#248eff",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "publish": {
+        "type": "point",
+        "poseTopic": "/move_base_simple/goal",
+        "pointTopic": "/clicked_point",
+        "poseEstimateTopic": "/initialpose",
+        "poseEstimateXDeviation": 0.5,
+        "poseEstimateYDeviation": 0.5,
+        "poseEstimateThetaDeviation": 0.26179939
+      },
+      "imageMode": {}
+    }
+  },
+  "globalVariables": {
+    "": ""
+  },
+  "userNodes": {},
+  "playbackConfig": {
+    "speed": 1
+  },
+  "layout": {
+    "first": {
+      "first": {
+        "first": {
+          "first": "Plot!322wiev",
+          "second": "Plot!3wi1arf",
+          "direction": "row",
+          "splitPercentage": 49.89082463278882
+        },
+        "second": {
+          "first": "Plot!3uwgvi8",
+          "second": "Plot!407ll5",
+          "direction": "row",
+          "splitPercentage": 51.35039663002466
+        },
+        "direction": "column",
+        "splitPercentage": 49.63369963369962
+      },
+      "second": "RosOut!1hpun5y",
+      "direction": "column",
+      "splitPercentage": 64.34108527131784
+    },
+    "second": "3D!2mhzowl",
+    "direction": "row",
+    "splitPercentage": 49.001663893510816
+  }
+}

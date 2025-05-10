@@ -9,6 +9,7 @@
   - [Switch between GPS and UKF for control input](#switch-between-gps-and-ukf-for-control-input)
   - [Commands](#commands-1)
   - [GPS-denied deployment](#gps-denied-deployment)
+- [Remote monitoring](#remote-monitoring)
 
 ### In Unity simulation
 
@@ -96,5 +97,20 @@ ros2 launch formation_controller follower_bringup.launch.py ns:=follower use_ukf
 #### GPS-denied deployment
 
 By default, the system still collects GPS data to compute ground truth, plot GPS and UKF paths, etc.. However, if you foresee that you will not have GPS at all, you can launch `follower_bringup.launch.py` with `have_gps:=False` to disable all nodes requiring GPS data to avoid dealing with unnecessary warnings.
+
+### Remote monitoring
+
+When deploying real vehicles, you can still monitor the locations of the vehicles and their paths if they are all connected to the same mqtt broker. This repo has set it up by default for you:>
+
+Download [foxglove](https://foxglove.dev/), open new connection, choose `Foxglove Websocket` and open the [GUI default](tuper_foxglove.json) file.
+
+On you local computer, run:
+```bash
+# 1st terminal
+ros2 launch foxglove_bridge foxglove_bridge_launch.xml
+
+# 2nd terminal
+ros2 launch monitoring live_monitoring.launch.py rosbag:=True
+```
 
 
