@@ -10,6 +10,7 @@
   - [Commands](#commands-1)
   - [GPS-denied deployment](#gps-denied-deployment)
 - [Remote monitoring](#remote-monitoring)
+- [One follower, one ghost leader](#one-follower-one-ghost-leader)
 
 ### In Unity simulation
 
