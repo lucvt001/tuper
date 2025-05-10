@@ -153,6 +153,4 @@ ros2 launch tuper_btcpp leader_bringup.launch.py ns:=leader1 tree_name:=TestRove
 
 You should be able to see something like this (assuming the BT is still as is). You can modify the trajectory in the [leader.xml](../tuper_btcpp/behavior_trees/leader.xml) under the subtree `TestRover`. The leader will be running in the simulation, and the follower will be running in the container. You can also run the follower in the simulation if you want to test it out.
 
-```bash
-
 ![](images/ghost_leader_path.png)
