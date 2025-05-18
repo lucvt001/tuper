@@ -20,7 +20,7 @@ RUN apt-get update && apt-get upgrade -y \
     ros-humble-mqtt-client \
     net-tools iproute2 iputils-ping \
     && pip install --upgrade pip==25.0 \
-    && pip install --no-input setuptools==58.2.0 filterpy pymavlink \
+    && pip install --no-input setuptools==58.2.0 filterpy pymavlink mavproxy pyserial \
     && rm -rf /var/lib/apt/lists/*
 
 # install rosdep dependencies and then delete the source
