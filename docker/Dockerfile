@@ -17,7 +17,7 @@ RUN apt-get update && apt-get upgrade -y \
     apt-utils \
     vim tmux \
     sudo git \
-    ros-humble-mqtt-client \
+    ros-humble-mqtt-client ros-humble-topic-tools \
     net-tools iproute2 iputils-ping \
     && pip install --upgrade pip==25.0 \
     && pip install --no-input setuptools==58.2.0 filterpy pymavlink mavproxy pyserial \
