@@ -4,16 +4,15 @@
 Create a ROS2 workspace if you don't have one already:
 
 ```bash
-mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws/src
+mkdir -p ~/colcon_ws/src
+cd ~/colcon_ws/src
 
 git clone --recursive https://github.com/lucvt001/tuper.git
 cd ..
 ```
 
-Checkout to main branch for all submodules so that if you make some changes, you can push easily:
+Checkout to main branch for all submodules so that if you make some changes, you can push easily (run this inside `src/tuper`):
 ```bash
-cd src/tuper
 git submodule foreach --recursive 'git checkout main || echo "Submodule $name has no main branch"'
 ```
 
@@ -79,4 +78,13 @@ git clone https://github.com/lucvt001/tuper_build.git
 Only on your laptop (not on the real vehicle):
 ```bash
 sudo apt install ros-$ROS_DISTRO-foxglove-bridge
+```
+
+Shortcut to get into the container:
+```bash
+echo "docker start tuper_container && docker exec -it tuper_container bash" >> ~/start_tuper_container.sh
+```
+
+```bash
+. ~/start_tuper_container.sh
 ```
