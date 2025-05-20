@@ -5,4 +5,4 @@ docker run -it --privileged \
     -v /dev:/dev \
     -v /dev/shm:/dev/shm \
     -v $PWD:/home/smarc2user/colcon_ws \
-    tuper:latest
+    luc001/tuper:latest
