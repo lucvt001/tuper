@@ -25,6 +25,12 @@ You should be at the root of the workspace for things to work properly.
 docker build -t tuper:latest -f src/tuper/docker/Dockerfile .
 ```
 
+#### On RPI
+
+```bash
+docker pull lucvt001/tuper:latest
+```
+
 ### Run docker container
 
 The typical practice is that the container be destroyed when it exits. However, for ease of development, we will keep it running even after we exit it, so that if you have to install some package or something, you don't have to do it every time you start the container.
@@ -62,6 +68,11 @@ colcon build --symlink-install
 > Note: If you are working on a resource-constraint platform like RPI, you may have to increase the swap size to avoid out of memory errors. You can do this by editing the file `/etc/dphys-swapfile` and changing the value of `CONF_SWAPSIZE` to a larger number (e.g. 500-1000). Reboot to take effect. During the build process, open another terminal and run `htop` to monitor cpu+ram usage. If this still causes freezing, consider running `export MAKEFLAGS="-j 1"` (can be 2, 3, 4) to reduce the number of cores used (at the expense of build speed). As an initial estimate, try swapsize 500 and `MAKEFLAGS="-j 4"` and reboot.
 
 >> Warning: After build, you must reduce the `CONF_SWAPSIZE` back to its original value (e.g. 100-300) and reboot again. This is because swap memory is meant to buy time and is extremely slow.
+
+#### On RPI
+```bash
+git clone https://github.com/lucvt001/tuper_build.git
+```
 
 ### Install additional packages
 
