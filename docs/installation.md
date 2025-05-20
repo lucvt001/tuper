@@ -11,6 +11,12 @@ git clone --recursive https://github.com/lucvt001/tuper.git
 cd ..
 ```
 
+Checkout to main branch for all submodules so that if you make some changes, you can push easily:
+```bash
+cd src/tuper
+git submodule foreach --recursive 'git checkout main || echo "Submodule $name has no main branch"'
+```
+
 ### Build docker image
 
 You should be at the root of the workspace for things to work properly.

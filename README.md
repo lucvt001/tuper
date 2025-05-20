@@ -22,5 +22,5 @@ Real-life specific packages:
 
 ## Tutorials
 
-### - [Tutorial 0: Installation](docs/installation.md)
-### - [Tutorial 1: Running the code](docs/running_the_code.md)
+### - [Tutorial 1: Installation](docs/installation.md)
+### - [Tutorial 2: Running the code](docs/running_the_code.md)
