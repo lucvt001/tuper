@@ -27,20 +27,26 @@ Under `formation_controller/launch/follower_bringup.launch.py`, at the end of th
 
 #### Commands
 
+*1st terminal:*
 ```bash
-# 1st terminal
 ros2 run ros_tcp_endpoint default_server_endpoint --ros-args -p ROS_IP:=127.0.0.1 -p ROS_PORT:=10000
-
-# 2nd terminal (optional)
+```
+*2nd terminal:*
+```bash
 ros2 launch foxglove_bridge foxglove_bridge_launch.xml
+```
 
-# 3rd terminal (optional, not recommended to run at the same time as foxglove because both processes are heavy)
+*3rd terminal (optional, not recommended to run at the same time as foxglove because both processes are heavy)*
+```bash
 ros2 bag record -a 
+```
 
-# 4th terminal (you can add as many followers as you want, just change the ns)
+*4th terminal: (you can add as many followers as you want, just change the ns)*
+```bash
 ros2 launch formation_controller sam_follower_bringup.launch.py ns:=follower use_ukf:=True
-
-# 5th terminal
+```
+*5th terminal:*
+```bash
 ros2 launch tuper_btcpp tuper_bringup.launch.py
 ```
 
@@ -69,30 +75,36 @@ In addition, when you launch `follower_bringup.launch.py` or `sam_follower_bring
 
 #### Commands
 
-**On every rover/ardupilot vehicle:**
+**On every rover/ardupilot vehicle: (DONT RUN THIS if docker compose up for waraps-arduagent is already running)**
 ```bash
 # Must run on local terminal, not in the container. You can change the master and add more outputs if you want.
 mavproxy.py --master=/dev/serial0 --out udp:172.17.0.1:14550
 ```
 
 On leader 1 (the supreme leader):
+*1st terminal:*
 ```bash
-# 1st terminal
-ros2 launch arduagent rover_bringup.launch.py ns:=leader1 is_leader:=True
+ros2 launch arduagent rover_bringup.launch.py ns:=leader1 is_leader:=True mqtt_params_file:=src/tuper/arduagent/config/mqtt_params_leader1.yaml
+```
 
-# 2nd terminal
+*2nd terminal: (optional)*
+```bash
 ros2 launch tuper_btcpp leader_bringup.launch.py ns:=leader1 tree_name:=TestRover
 ```
 
-On leader 2, run the code that can control it to be parallel to leader 1. As of now, the project does not support control for leader 2 yet.
+On leader 2:
+```bash
+ros2 launch arduagent rover_bringup.launch.py ns:=leader2 is_leader:=False mqtt_params_file:=src/tuper/arduagent/config/mqtt_params_leader2.yaml
+```
 
 On follower:
+*1st terminal:*
 ```bash
-# 1st terminal
-ros2 launch arduagent rover_bringup.launch.py ns:=follower is_leader:=False
-
-# 2nd terminal
-ros2 launch formation_controller follower_bringup.launch.py ns:=follower use_ukf:=False rosbag:=True
+ros2 launch arduagent rover_bringup.launch.py ns:=follower is_leader:=False mqtt_params_file:=src/tuper/arduagent/config/mqtt_params_follower.yaml
+```
+*2nd terminal:*
+```bash
+ros2 launch formation_controller follower_bringup.launch.py ns:=follower use_ukf:=True rosbag:=True
 ```
 
 #### GPS-denied deployment
