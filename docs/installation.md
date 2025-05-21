@@ -72,6 +72,9 @@ colcon build --symlink-install
 ```bash
 git clone https://github.com/lucvt001/tuper_build.git
 ```
+```bash
+mv tuper_build/build/ build && mv tuper_build/install/ install && rm -rf tuper_build
+```
 
 ### Install additional packages
 
