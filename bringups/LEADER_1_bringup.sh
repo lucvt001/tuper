@@ -37,7 +37,7 @@ tmux select-pane -t 3
 tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
 tmux send-keys "" C-m
 
-# === Window 2: Backup A ===
+# === Window 2: Topic Monitor ===
 tmux new-window -t $SESSION:2 -n "topic monitor"
 # Split the window into 4 quadrants
 tmux select-window -t $SESSION:2

@@ -27,7 +27,7 @@ tmux send-keys "ros2 launch arduagent rover_bringup.launch.py ns:=follower is_le
 
 tmux select-pane -t 1
 tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
-tmux send-keys "ros2 launch formation_controller follower_bringup.launch.py ns:=follower use_ukf:=True rosbag:=True" C-m
+tmux send-keys "ros2 launch formation_controller follower_bringup.launch.py ns:=/follower use_ukf:=True rosbag:=True" C-m
 
 tmux select-pane -t 2
 tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
@@ -35,9 +35,9 @@ tmux send-keys "ros2 run serial_ping_pkg serial_ping_node --ros-args -r __ns:=fo
 
 tmux select-pane -t 3
 tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
-tmux send-keys "" C-m
+tmux send-keys "ros2 bag record -a" # no C-m here, we want the user to trigger the recording manually by hitting Enter
 
-# === Window 2: Backup A ===
+# === Window 2: Topic Monitor ===
 tmux new-window -t $SESSION:2 -n "topic monitor"
 # Split the window into 4 quadrants
 tmux select-window -t $SESSION:2
@@ -49,19 +49,27 @@ tmux split-window -v
 # Send commands to each pane
 tmux select-pane -t 0
 tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
-tmux send-keys "" C-m
+tmux send-keys "ros2 topic echo /follower/control/throttle" C-m
 
 tmux select-pane -t 1
 tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
-tmux send-keys "" C-m
+tmux send-keys "ros2 topic echo /follower/control/steering" C-m
+
+# tmux select-pane -t 2
+# tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
+# tmux send-keys "ros2 topic echo /follower/leader1/distance" C-m
+
+# tmux select-pane -t 3
+# tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
+# tmux send-keys "ros2 topic echo /follower/leader2/distance" C-m
 
 tmux select-pane -t 2
 tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
-tmux send-keys "" C-m
+tmux send-keys '(ros2 topic echo /follower/leader1/distance | awk "{print \"[leader1] \" \$0}") & (ros2 topic echo /follower/leader2/distance | awk "{print \"[leader2] \" \$0}")' C-m
 
 tmux select-pane -t 3
 tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
-tmux send-keys "" C-m
+tmux send-keys "ros2 topic echo /follower/ukf/state" C-m
 
 # === Window 3: Backup B ===
 tmux new-window -t $SESSION:3 -n 'RaPi'
