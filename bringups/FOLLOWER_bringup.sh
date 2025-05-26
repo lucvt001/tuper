@@ -31,7 +31,7 @@ tmux send-keys "ros2 launch formation_controller follower_bringup.launch.py ns:=
 
 tmux select-pane -t 2
 tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
-tmux send-keys "ros2 run serial_ping_pkg serial_ping_node --ros-args -r __ns:=follower" C-m
+tmux send-keys "ros2 run serial_ping_pkg serial_ping_node --ros-args -r __ns:=/follower" C-m
 
 tmux select-pane -t 3
 tmux send-keys "cd ~ && . start_tuper_container.sh" C-m
